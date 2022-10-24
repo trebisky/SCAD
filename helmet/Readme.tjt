@@ -1,0 +1,81 @@
+How to do this:
+
+1 - edit helmet.scad
+
+1.5 - use openscad in GUI mode to view the model
+    Use F6 to "render", then F7 to export STL
+
+3 - use "cura" to go from stl to gcode.
+
+    -- save some time and insert the flash card
+       before starting Cura.
+    -- double check settings
+       Creality Ender-3 Pro, Generic PETG, 0.4 nozzle
+       50 percent infill, 240/70 temperatures, 0.2mm layers
+
+    -- Do not use File --> New Project to get started!
+	(this will reset to 215/70 temperatures)
+    -- Use File --> open file to open "helmet.stl"
+    -- I select 100 percent infill.
+
+    -- then push the big blue "slice" button at lower right
+    -- then push the "save to disk" button that replaces it.
+
+3.1 - a note on Cura.  If I plug in my card reader before starting Cura,
+    and mount the drive, Cura will just offer to write to removeable drive.
+    This is convenient (but it generates an odd filename).
+    It generates CE3PRO_helmet.gcode in this case.
+
+3.2 - Cura does set head and bed settings!
+    Bring down the print settings menu and find Material.
+    In there are the print temperature and bed temperature.
+    The default was 215 and was making me crazy.
+    I set 245 and 70.
+
+4.0 I am using blue Hatchbox PETG
+
+4.1 adhesion on painters tape is bad, should clean with isopropyl first.
+
+4.2 - off to the printer.  Insert the card upside down.
+    Honestly, "print from TF" is all you need.
+    The printer will heat everthing up and home
+    the axes without being told to do so.
+
+    No need to  autohome the axes, the gcode will command this
+     when the print starts.
+    Select prepare --> preheat ABS (I am now using PETG).
+     (probably no need for this either, it will heat to the
+      settings in the gcode file before starting the print
+    wait for it to get to 245/80
+     (the temperatures in Cura are 245/80, but I don't know how
+      to change the default "ABS" temperature in the printer,
+      but starting at 240 works, the printer heats the
+      extruder up to the 245 in the gcode file before
+      starting the print)
+    Then "print from TF card", refresh, then select file
+
+I had a warped print with my new PEI bed using 245/70.
+I changed (in Cura) to 245/80 and fan 50 rather than 100
+I also turned of the AC to eliminate the draft.
+This turned out nicely.
+Some people run the bed as high as 90 with PETG.
+NOTE: the preheat for ABS brings the bed up to 70C.
+When the printer starts to print from TF, it recognizes that
+80C is requested and doesn't start the print until the bed is
+at the specified temperature.
+
+Cura tosses all your settings unless you take pains to save them in a profile
+I did so, creating a "Standard Quality PETG" profile.
+This wasted a huge amount of my time.
+
+Once you have a profile and want to change what is permanently saved,
+click on the "star", then find the "update profile with current settings" button.
+This menu also lets you change the name (I changed to PETG standard).
+
+I restart Cura to ensure that it knows how to save my settings.
+I check:
+    Infill (20 or 100)
+    Material (245/80)
+    Cooling (fan 50)
+    Support (checked, touching buildplate, normal, zig-zag
+
