@@ -8,7 +8,10 @@ I had to "chmod a+x" this thing (it is huge, 240M, probably some
 containerized Cura).  But it works!  Maybe when 5.3.1 reaches the
 Fedora packages the problems will be fixed.
 
+** I make a link to this in /home/tom/bin called "cura2"
+
 https://github.com/Ultimaker/Cura/issues/15524
+https://github.com/Ultimaker/Cura/releases/download/5.3.1/UltiMaker-Cura-5.3.1-linux-modern.AppImage
 
 ------------------------------
 
