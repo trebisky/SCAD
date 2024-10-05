@@ -1,10 +1,10 @@
 How to do this:
 
-1 - edit helmet.scad
+1 - edit scope.scad
 
 1.5 - use openscad in GUI mode to view the model
     Use F6 to "render", then F7 to export STL
-    (or just type "make" to get helmet.stl)
+    (or just type "make" to get scope.stl)
 
 3 - use "cura" to go from stl to gcode.
 
@@ -18,7 +18,7 @@ How to do this:
 
     -- Do not use File --> New Project to get started!
 	(this will reset to 215/70 temperatures)
-    -- Use File --> open file to open "helmet.stl"
+    -- Use File --> open file to open "scope.stl"
     -- I select 100 percent infill.
 
     -- then push the big blue "slice" button at lower right
@@ -27,7 +27,7 @@ How to do this:
 3.1 - a note on Cura.  If I plug in my card reader before starting Cura,
     and mount the drive, Cura will just offer to write to removeable drive.
     This is convenient (but it generates an odd filename).
-    It generates CE3PRO_helmet.gcode in this case.
+    It generates CE3PRO_scope.gcode in this case.
 
 3.2 - Cura does set head and bed settings!
     Bring down the print settings menu and find Material.

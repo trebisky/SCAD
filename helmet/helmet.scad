@@ -2,6 +2,11 @@
  * Tom Trebisky  10-12-2022
  */
 
+// We broke the original front bracket
+//  (as well as the piece it bolts to)
+//  so we need to print a modified version.
+new_front = true;
+
 // Front and Back are different
 front = true;
 // front = false;
@@ -58,8 +63,14 @@ bt3 = mm ( 0.325 );	// box thickness
 bl3 = mm ( 0.60 );	// box length
 by3 = bl - bl3;
 
+// new_box3 - new front only, bar on top
+nbw3 = mm ( 2.25 );	// box width
+
 // front hole spacing
 fhs = mm ( 0.86 );
+
+// new front hole spacing
+nfhs = mm ( 1.60 );
 
 // Hole dimensions
 // hole at .166 was to small.
@@ -111,6 +122,12 @@ module box3 () {
 	cube ( [ bw3, bl3, bt3 ] );
 }
 
+module nbox3 () {
+    translate ( [ -nbw3/2, by3, pth-bt] )
+	cube ( [ nbw3, bl3, bt3 ] );
+}
+
+
 module hex () {
     del = 1;
     ht = hex_thick + del;
@@ -126,6 +143,21 @@ module hole ( xloc, yloc ) {
 	    translate ( [ 0, 0, bt-hex_thick+del] )
 		hex ();
 	}
+}
+
+module back_bracket () {
+    difference () {
+
+	union () {
+	    plate ();
+	    latch ();
+	    box1 ();
+	    box2 ();
+	}
+
+	hole ( 0, mm(-0.05) );
+	hole ( 0, mm(1.35) );
+    }
 }
 
 module front_bracket () {
@@ -144,7 +176,7 @@ module front_bracket () {
     }
 }
 
-module back_bracket () {
+module new_front_bracket () {
     difference () {
 
 	union () {
@@ -152,14 +184,17 @@ module back_bracket () {
 	    latch ();
 	    box1 ();
 	    box2 ();
+	    nbox3 ();
 	}
 
-	hole ( 0, mm(-0.05) );
-	hole ( 0, mm(1.35) );
+	hole ( -nfhs/2, mm(1.5) );
+	hole ( nfhs/2, mm(1.5) );
     }
 }
 
-	if ( front )
+	if ( new_front )
+	    new_front_bracket ();
+	else if ( front )
 	    front_bracket ();
 	else
 	    back_bracket ();
