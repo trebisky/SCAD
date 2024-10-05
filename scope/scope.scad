@@ -2,6 +2,8 @@
  * Tom Trebisky  10-4-2024
  */
 
+left = true;
+
 /* I make all my measurements in inches.
  * We need to convert to mm so the STL file will be in mm.
  */
@@ -56,16 +58,35 @@ module chop () {
 	cube ( [ l+100, h+100, w ] );
 }
 
-// union () { }
-
-difference () {
+// The whole object in original orientation
+module whole () {
 	difference () {
 		cube ( [ l, h, w ] );
 		lhole ();
 		drill ( x1, y1 );
 		drill ( x2, y2 );
 	}
-	chop ();
 }
+
+module right_side () {
+	difference () {
+		whole ();
+		chop ();
+	}
+}
+
+module left_side () {
+	difference () {
+		translate ( [ l, 0, w] )
+		rotate ( [0, 180, 0 ] )
+		whole ();
+		chop ();
+	}
+}
+
+if ( left )
+	left_side ();
+else
+	right_side ();
 
 // THE END
