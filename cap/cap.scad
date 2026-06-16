@@ -6,8 +6,9 @@ mmpi = 25.4;
 inner_diam = 1.525 * mmpi;
 outer_diam = 1.8 * mmpi;
 
-height = 0.9 * mmpi;
+in_height = 0.9 * mmpi;
 lid = 0.2 * mmpi;
+out_height = in_height + lid;
 
 r_in = inner_diam / 2.0;
 r_out = outer_diam / 2.0;
@@ -25,8 +26,8 @@ $fn = 60;
 // Note - use %cylinder to make the outer cylinder transparent.
 
 difference () {
-    cylinder( r = r_out, h = height );
-    translate([0,0,lid]) cylinder( r = r_in, h = height );
+    cylinder( r = r_out, h = out_height );
+    translate([0,0,lid]) cylinder( r = r_in, h = out_height );
 }
 
 // THE END
